@@ -12,5 +12,23 @@ const (
 	EOF     = "EOF"
 
 	//識別子　＋　リテラル
+	IDENNT = "IDENT //add, foobar, x,y, ..."
+	INT    = "INT" //123456
 
+	//演算子
+	ASSIGN = "="
+	PLUS   = "+"
+
+	//デリミタ
+	COMMA      = ","
+	SEMICOLONE = ";"
+
+	LPALEN = "("
+	RPALEN = ")"
+	LBRACE = "{"
+	RBRACE = "}"
+
+	//キーワード
+	FUNCTION = "FUNCTION"
+	LET      = "LET"
 )
