@@ -20,11 +20,11 @@ const (
 	PLUS   = "+"
 
 	//デリミタ
-	COMMA      = ","
-	SEMICOLONE = ";"
+	COMMA     = ","
+	SEMICOLON = ";"
 
-	LPALEN = "("
-	RPALEN = ")"
+	LPAREN = "("
+	RPAREN = ")"
 	LBRACE = "{"
 	RBRACE = "}"
 
