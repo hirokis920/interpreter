@@ -39,7 +39,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 		}
 		p.nextToken()
 	}
-	return nil
+	return program
 }
 
 func (p *Parser) parseStatement() ast.Statement {
