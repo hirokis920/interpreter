@@ -45,11 +45,27 @@ func (p *Program) String() string {
 type LetStatement struct {
 	Token token.Token //token.LET トークン
 	Name  *Identifier
-	Calue Expression
+	Value Expression
 }
 
 func (ls *LetStatement) statementNode()       {}
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
+
+func (ls *LetStatement) String() string {
+	var out bytes.Buffer
+
+	out.WriteString(ls.TokenLiteral() + " ")
+	out.WriteString(ls.Name.String())
+	out.WriteString(" = ")
+
+	if ls.Value != nil {
+		out.WriteString(ls.Value.String())
+	}
+
+	out.WriteString(";")
+
+	return out.String()
+}
 
 type Identifier struct {
 	Token token.Token //token.LET トークン
@@ -58,6 +74,7 @@ type Identifier struct {
 
 func (i *Identifier) expressionNode()      {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+func (i *Identifier) String() string       { return i.Value }
 
 type RetrunStatement struct {
 	Token       token.Token // 'return'トークン
@@ -67,6 +84,21 @@ type RetrunStatement struct {
 func (rs *RetrunStatement) statementNode()       {}
 func (rs *RetrunStatement) TokenLiteral() string { return rs.Token.Literal }
 
+func (rs *RetrunStatement) String() string {
+	var out bytes.Buffer
+
+	out.WriteString(rs.TokenLiteral() + " ")
+
+	if rs.RetrunValue != nil {
+		out.WriteString(rs.RetrunValue.String())
+	}
+
+	out.WriteString(";")
+
+	return out.String()
+
+}
+
 type ExpressionStatement struct {
 	Token      token.Token //　式の最初のトークン
 	Expression Expression
@@ -74,3 +106,10 @@ type ExpressionStatement struct {
 
 func (es ExpressionStatement) statementNode()       {}
 func (es ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
+
+func (es *ExpressionStatement) String() string {
+	if es.Expression != nil {
+		return es.Expression.String()
+	}
+	return ""
+}
