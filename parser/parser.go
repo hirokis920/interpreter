@@ -67,6 +67,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 	program.Statements = []ast.Statement{}
 
 	for p.curToken.Type != token.EOF {
+		println("p.curToken.Type: %s", p.curToken.Type)
 		stmt := p.parseStatement()
 		if stmt != nil {
 			program.Statements = append(program.Statements, stmt)
@@ -89,7 +90,6 @@ func (p *Parser) parseStatement() ast.Statement {
 
 func (p *Parser) parseLetStatement() *ast.LetStatement {
 	stmt := &ast.LetStatement{Token: p.curToken}
-	println(p.curToken.Type)
 
 	if !p.expectPeek(token.IDENT) {
 		return nil
@@ -121,7 +121,6 @@ func (p *Parser) parseReturnStatement() *ast.RetrunStatement {
 
 func (p *Parser) parseExpressionStatement() *ast.ExpressionStatement {
 	stmt := &ast.ExpressionStatement{Token: p.curToken}
-	println("stmt %s", stmt)
 	stmt.Expression = p.parseExpression(LOWEST)
 
 	if p.peekTokenIs(token.SEMICOLON) {
@@ -133,7 +132,6 @@ func (p *Parser) parseExpressionStatement() *ast.ExpressionStatement {
 
 func (p *Parser) parseExpression(precedence int) ast.Expression {
 	prefix := p.prefixParseFns[p.curToken.Type]
-	println("prefix %s", prefix)
 	if prefix == nil {
 		return nil
 	}
