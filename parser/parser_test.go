@@ -8,7 +8,7 @@ import (
 
 func TestLetStatements(t *testing.T) {
 	input := `
-	let x = /5;
+	let x = 5;
 	let y = 10;
 	let foobar = 838383;
 	`
@@ -83,7 +83,7 @@ func TestReturnStatements(t *testing.T) {
 	}
 
 	for _, stmt := range program.Statements {
-		returnStmt, ok := stmt.(*ast.RetrunStatement)
+		returnStmt, ok := stmt.(*ast.ReturnStatement)
 		if !ok {
 			t.Errorf("stmt not *ast.ReturnStatement. got=%T", stmt)
 			continue

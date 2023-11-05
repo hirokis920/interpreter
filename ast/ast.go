@@ -76,21 +76,21 @@ func (i *Identifier) expressionNode()      {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
 func (i *Identifier) String() string       { return i.Value }
 
-type RetrunStatement struct {
+type ReturnStatement struct {
 	Token       token.Token // 'return'トークン
-	RetrunValue Expression
+	ReturnValue Expression
 }
 
-func (rs *RetrunStatement) statementNode()       {}
-func (rs *RetrunStatement) TokenLiteral() string { return rs.Token.Literal }
+func (rs *ReturnStatement) statementNode()       {}
+func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
 
-func (rs *RetrunStatement) String() string {
+func (rs *ReturnStatement) String() string {
 	var out bytes.Buffer
 
 	out.WriteString(rs.TokenLiteral() + " ")
 
-	if rs.RetrunValue != nil {
-		out.WriteString(rs.RetrunValue.String())
+	if rs.ReturnValue != nil {
+		out.WriteString(rs.ReturnValue.String())
 	}
 
 	out.WriteString(";")
@@ -104,8 +104,8 @@ type ExpressionStatement struct {
 	Expression Expression
 }
 
-func (es ExpressionStatement) statementNode()       {}
-func (es ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
+func (es *ExpressionStatement) statementNode()       {}
+func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
 
 func (es *ExpressionStatement) String() string {
 	if es.Expression != nil {
