@@ -276,3 +276,7 @@ func TestParseingInfixExpressions(t *testing.T) {
 		}
 	}
 }
+
+func TestOperatorPrecedenceParsing(t *testing.T) {
+
+}
