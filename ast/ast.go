@@ -10,11 +10,13 @@ type Node interface {
 	String() string
 }
 
+// 文（値を生成しないものletから；までとかっぽい）
 type Statement interface {
 	Node
 	statementNode()
 }
 
+// 式(値を生成するもの。＝の後ろに書かれているものっぽい？)
 type Expression interface {
 	Node
 	expressionNode()
@@ -124,7 +126,7 @@ func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
 func (il *IntegerLiteral) String() string       { return il.Token.Literal }
 
 type PrefixExpression struct {
-	Token    token.Token //全地トークン、例えば「!」
+	Token    token.Token //前置トークン、例えば「!」
 	Operator string
 	Right    Expression
 }
