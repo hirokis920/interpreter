@@ -1,6 +1,11 @@
 package evaluator
 
-import "testing"
+import (
+	"monkey/lexer"
+	"monkey/object"
+	"monkey/parser"
+	"testing"
+)
 
 func TestEvalIntegerExpression(t *testing.T) {
 	tests := []struct {
@@ -11,10 +16,16 @@ func TestEvalIntegerExpression(t *testing.T) {
 		{"10", 10},
 	}
 
-	for _, tt := range test {
+	for _, tt := range tests {
 		evaluated := testEval(tt.input)
 		teestIntegerObject(t, evaluated, tt.expected)
 	}
 }
 
-func
+func testEval(input string) object.Object {
+	l := lexer.New(input)
+	p := parser.New(l)
+	program := p.ParseProgram()
+
+	return Eval(program)
+}
