@@ -29,3 +29,5 @@ func testEval(input string) object.Object {
 
 	return Eval(program)
 }
+
+func teestIntegerObject(t testing.T)
