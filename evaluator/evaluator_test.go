@@ -18,7 +18,7 @@ func TestEvalIntegerExpression(t *testing.T) {
 
 	for _, tt := range tests {
 		evaluated := testEval(tt.input)
-		teestIntegerObject(t, evaluated, tt.expected)
+		testIntegerObject(t, evaluated, tt.expected)
 	}
 }
 
@@ -30,4 +30,18 @@ func testEval(input string) object.Object {
 	return Eval(program)
 }
 
-func teestIntegerObject(t testing.T)
+// intを渡した評価器がintを返却することをチェックする
+func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
+	result, ok := obj.(*object.Integer)
+	if !ok {
+		t.Errorf("object in not Integer. got=%T (%+v)", obj, obj)
+		return false
+	}
+
+	if result.Value != expected {
+		t.Errorf("object has wrong value. got=%d, want=%d", result.Value, expected)
+		return false
+	}
+
+	return true
+}
