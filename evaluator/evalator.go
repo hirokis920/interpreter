@@ -20,6 +20,7 @@ func Eval(node ast.Node) object.Object {
 	return nil
 }
 
+// 文を再帰的に評価する
 func evalStatements(stmts []ast.Statement) object.Object {
 	var result object.Object
 
