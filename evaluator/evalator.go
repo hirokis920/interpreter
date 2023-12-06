@@ -5,6 +5,11 @@ import (
 	"monkey/object"
 )
 
+var (
+	TRUE  = &object.Boolean{Value: true}
+	FALSE = &object.Boolean{Value: false}
+)
+
 func Eval(node ast.Node) object.Object {
 	switch node := node.(type) {
 	//文の場合
@@ -15,9 +20,17 @@ func Eval(node ast.Node) object.Object {
 	//式の場合
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
+	case *ast.Boolean:
+		return nativeBooleanObject(node.Value)
 	}
-
 	return nil
+}
+
+func nativeBooleanObject(input bool) *object.Boolean {
+	if input {
+		return TRUE
+	}
+	return FALSE
 }
 
 // 文を再帰的に評価する
