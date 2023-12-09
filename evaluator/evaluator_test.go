@@ -204,3 +204,5 @@ f(10);`,
 		testIntegerObject(t, evaluated, tt.expected)
 	}
 }
+
+func 
