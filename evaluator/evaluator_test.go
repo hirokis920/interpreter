@@ -205,4 +205,6 @@ f(10);`,
 	}
 }
 
-func 
+func TestErrorHandling(t *testing.T) {
+
+}
