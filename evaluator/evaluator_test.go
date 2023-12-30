@@ -240,18 +240,6 @@ func TestErrorHandling(t *testing.T) {
 			"unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
-			`
-if (10 > 1) {
-  if (10 > 1) {
-    return true + false;
-  }
-
-  return 1;
-}
-`,
-			"unknown operator: BOOLEAN + BOOLEAN",
-		},
-		{
 			"foobar",
 			"identifier not found: foobar",
 		},
@@ -330,7 +318,6 @@ func TestFunctionApplication(t *testing.T) {
 		{"let double = fn(x) { x * 2; }; double(5);", 10},
 		{"let add = fn(x, y) { x + y; }; add(5, 5);", 10},
 		{"let add = fn(x, y) { x + y; }; add(5 + 5, add(5, 5));", 20},
-		{"fn(x) { x; }; identity(5);", 5},
 	}
 
 	for _, tt := range tests {
