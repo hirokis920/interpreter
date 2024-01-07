@@ -1,8 +1,10 @@
 package evaluator
 
 import (
+	"fmt"
 	"monkey/ast"
 	"monkey/object"
+	"monkey/token"
 )
 
 func quote(node ast.Node, env *object.Environment) object.Object {
@@ -23,9 +25,24 @@ func evalUnquoteCalls(quoted ast.Node, env *object.Environment) ast.Node {
 		if len(call.Arguments) != 1 {
 			return node
 		}
-
-		return Eval(call.Arguments[0], env)
+		unquoted := Eval(call.Arguments[0], env)
+		return coverObjectToASTNode(unquoted)
 	})
+}
+
+// object.Objectをast.Nodeに置き換える
+func coverObjectToASTNode(obj object.Object) ast.Node {
+	switch obj := obj.(type) {
+	case *object.Integer:
+		t := token.Token{
+			Type:    token.INT,
+			Literal: fmt.Sprintf("%d", obj.Value),
+		}
+		return &ast.IntegerLiteral{Token: t, Value: obj.Value}
+
+	default:
+		return nil
+	}
 }
 
 func isUnquoteCall(node ast.Node) bool {
