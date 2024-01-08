@@ -355,6 +355,7 @@ func (p *Parser) peekError(t token.TokenType) {
 	p.errors = append(p.errors, msg)
 }
 
+// 自身(パーサー)の持っているプログラムをトークンごとに区切ってスライスに挿入する
 func (p *Parser) ParseProgram() *ast.Program {
 	program := &ast.Program{}
 	program.Statements = []ast.Statement{}
@@ -370,6 +371,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 	return program
 }
 
+// lre,returnを識別子して専用の関数に渡す
 func (p *Parser) parseStatement() ast.Statement {
 	switch p.curToken.Type {
 	case token.LET:

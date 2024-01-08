@@ -47,6 +47,8 @@ func coverObjectToASTNode(obj object.Object) ast.Node {
 			t = token.Token{Type: token.FALSE, Literal: "false"}
 		}
 		return &ast.Boolean{Token: t, Value: obj.Value}
+	case *object.Quote:
+		return obj.Node
 
 	default:
 		return nil
