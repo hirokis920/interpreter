@@ -27,7 +27,7 @@ func TestDifineMacros(t *testing.T) {
 	if ok {
 		t.Fatalf("number should not be defined")
 	}
-	_, ok := env.Get("function")
+	_, ok = env.Get("function")
 	if ok {
 		t.Fatalf("function should not be defined")
 	}
@@ -56,7 +56,7 @@ func TestDifineMacros(t *testing.T) {
 	expectedBody := "(x + y)"
 
 	if macro.Body.String() != expectedBody {
-		t.Fatalf("body is not %q got=%q", expextedBody, macro.Body.String())
+		t.Fatalf("body is not %q got=%q", expectedBody, macro.Body.String())
 	}
 }
 
