@@ -33,13 +33,13 @@ func TestDifineMacros(t *testing.T) {
 	}
 
 	obj, ok := env.Get("mymacro")
-	if ok {
+	if !ok {
 		t.Fatalf("macro not in environment")
 	}
 
 	macro, ok := obj.(*object.Macro)
 	if !ok {
-		t.Fatalf("object is not Macro. got%T (%+v), obj, obj")
+		t.Fatalf("object is not Macro. got%T (%+v)", obj, obj)
 	}
 
 	if len(macro.Parameters) != 2 {
@@ -47,10 +47,10 @@ func TestDifineMacros(t *testing.T) {
 	}
 
 	if macro.Parameters[0].String() != "x" {
-		t.Fatalf("parameter is not 'x'. got=%q", &macro.Parameters[0])
+		t.Fatalf("parameter is not 'x'. got=%q", macro.Parameters[0])
 	}
 	if macro.Parameters[1].String() != "y" {
-		t.Fatalf("parameter is not 'y'. got=%q", &macro.Parameters[1])
+		t.Fatalf("parameter is not 'y'. got=%q", macro.Parameters[1])
 	}
 
 	expectedBody := "(x + y)"
