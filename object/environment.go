@@ -2,7 +2,7 @@ package object
 
 //環境　letで定義する名前と関連づけられた値を記録しておくためのもの。文字列とオブジェクトを関連づけるハッシュマップ
 
-func NewEncloseEnvironment(outer *Environment) *Environment {
+func NewEnclosedEnvironment(outer *Environment) *Environment {
 	env := NewEnvironment()
 	env.outer = outer
 	return env
