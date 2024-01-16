@@ -1,5 +1,21 @@
 # interpreter
 
+## インタプリタ
+テキストが入力されて何かが出力されるもの。
+
+
+コンパイラはパンチカードを読み取って情報を編纂（して出力）する？インタプリタは
+
+1884年: ハーマン・ホレリスが "Art of Compiling Statistics" と題した特許を出願し、1889年1月8日にアメリカ合衆国特許第 395,782号として発効。
+https://www.loveniplaw.co.uk/art-of-compiling-statistics/
+
+印字機 (Interpreter) - カードの内容を上端に印字する。一般にフォントの幅が穴の幅より広いため、60文字までしか印字できない[8]。
+http://www.columbia.edu/cu/computinghistory/interpreter.html
+
+https://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%A9#cite_note-ikkatu-1
+^ a b （※）コンパイラの定義文にわざわざ「一括して」という言葉を含めることが多いのは、インタプリタと対比するためである。「一括して」を入れないとインタプリタまで含んでしまい、定義文としては落第点ものとなる。Merriam Websterの英文の定義文でも、やはり「translates an entire set of instructions」[1]と、「命令群（の一部分ではなく）全部を」と明記している。
+
+
 ## 字句解析
 評価までにソースコードは２回変更される。
 ソースコード→トークン列→抽象構文木
