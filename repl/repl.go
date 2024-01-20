@@ -19,6 +19,12 @@ func Start(in io.Reader, out io.Writer) {
 
 	for {
 		fmt.Printf(PRONPT)
+		//クロージャのテスト用
+		f := outer()
+		f()
+		f()
+		f()
+		//
 		scanned := scanner.Scan()
 		if !scanned {
 			return
@@ -64,4 +70,17 @@ func printParserErrors(out io.Writer, errors []string) {
 	for _, msg := range errors {
 		io.WriteString(out, "\t"+msg+"\n")
 	}
+}
+
+// クロージャのテスト用
+func outer() func() {
+
+	x := 0
+
+	inner := func() {
+		fmt.Print(x)
+		x = x + 1
+	}
+
+	return inner
 }
