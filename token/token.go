@@ -1,15 +1,20 @@
 package token
 
+// トークンの種類を識別するためのタイプ　整数、識別子（変数名）、キーワード（let,fn）、記号
 type TokenType string
 
+// トークンはタイプとリテラル（実際の値）で構成する
 type Token struct {
 	Type    TokenType
 	Literal string
 }
 
+// トークンタイプの定数を定義
 const (
+	//エラー用
 	ILLEGAL = "ILLEGAL"
-	EOF     = "EOF"
+	//終端用
+	EOF = "EOF"
 
 	//識別子　＋　リテラル
 	IDENT  = "IDENT //add, foobar, x,y, ..."

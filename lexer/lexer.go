@@ -2,6 +2,7 @@ package lexer
 
 import "monkey/token"
 
+// ソースコードを入力として受け取り、出力としてトークン列を返す。入力を先頭から読み込み、認識したトークンを１つずつ出力する。
 type Lexer struct {
 	input        string
 	position     int  // current position in input (points to current char)

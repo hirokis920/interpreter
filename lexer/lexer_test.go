@@ -7,6 +7,7 @@ import (
 )
 
 func TestNextToken(t *testing.T) {
+	//ソースコードを与える
 	input := `let five = 5;
 	let ten = 10;
 	
@@ -30,7 +31,7 @@ func TestNextToken(t *testing.T) {
 	{"foo": "bar"}
 	macro(x, y) { x + y; };
 	`
-
+	//出力を期待するトークンの型と値
 	tests := []struct {
 		expectedType    token.TokenType
 		expectedLiteral string
@@ -137,19 +138,39 @@ func TestNextToken(t *testing.T) {
 		{token.EOF, ""},
 	}
 
+	//ソースコードを与えてLexerを初期化
 	l := New(input)
-
+	//１トークンを１テストとして再帰的にテストを実施している。
 	for i, tt := range tests {
+		//ソースコードの先頭を読み込みトークンを生成
 		tok := l.NextToken()
 
+		//トークンが期待する型か確認
 		if tok.Type != tt.expectedType {
 			t.Fatalf("tests[%d] - Tokentype wrong. expected=%q, got=%q",
 				i, tt.expectedType, tok.Type)
 		}
 
+		//トークンが期待する値か確認
 		if tok.Literal != tt.expectedLiteral {
 			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q",
 				i, tt.expectedLiteral, tok.Literal)
 		}
 	}
+}
+
+// let t = 3;
+
+// let
+// t
+// =
+// 3
+
+func TestLexer(t *testing.T) {
+	// "`'の違い
+	//"string型"
+	// 'rune型'
+	// `改行含むstring型バックスラッシュのエスケープは解釈されない`
+	input := `let t = 3`
+
 }
