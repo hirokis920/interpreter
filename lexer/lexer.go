@@ -1,15 +1,18 @@
 package lexer
 
-import "monkey/token"
+import (
+	"monkey/token"
+)
 
 // ソースコードを入力として受け取り、出力としてトークン列を返す。入力を先頭から読み込み、認識したトークンを１つずつ出力する。
 type Lexer struct {
-	input        string
-	position     int  // current position in input (points to current char)
-	readPosition int  // current reading position in input (after current char)
-	ch           byte // current char under examination
+	input        string //入力されたソースコード
+	position     int    // ソース上の今の位置 (今読んだ文字)
+	readPosition int    // 次に読む位置 (次に読む文字)
+	ch           byte   // 検査中のバイト
 }
 
+// ソースを受け取ってlexerを返す
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
 	l.readChar()
