@@ -115,10 +115,14 @@ func (l *Lexer) skipWhitespace() {
 	}
 }
 
+// 文字が終わっていないかチェックした後、1文字読み込んでchに格納。
+// positionとreadPositionを進める。
 func (l *Lexer) readChar() {
 	if l.readPosition >= len(l.input) {
 		l.ch = 0
 	} else {
+		//string型の変数は、内部的にバイト配列として実装されています。
+		//そのため、[]を用いることで、その位置のバイトを取得することができます。
 		l.ch = l.input[l.readPosition]
 	}
 	l.position = l.readPosition
