@@ -159,6 +159,7 @@ func TestNextToken(t *testing.T) {
 	}
 }
 
+//以下練習用
 // let t = 3;
 
 // let
@@ -172,5 +173,30 @@ func TestLexer(t *testing.T) {
 	// 'rune型'
 	// `改行含むstring型バックスラッシュのエスケープは解釈されない`
 	input := `let t = 3`
+
+	tests := []struct {
+		expectedType    token.TokenType
+		expectedLiteral string
+	}{
+		{token.LET, "let"},
+		{token.IDENT, "t"},
+		{token.ASSIGN, "="},
+		{token.INT, "3"},
+		{token.EOF, ""},
+	}
+
+	lexer := New(input)
+
+	for i, tt := range tests {
+		tok := lexer.NextToken()
+
+		if tok.Type != tt.expectedType {
+			t.Fatalf("テスト%dの型が違うよ。%q %q", i, tok.Type, tt.expectedType)
+		}
+		if tok.Literal != tt.expectedLiteral {
+			t.Fatalf("test%dのリテラルが違うよ。", i)
+		}
+
+	}
 
 }
