@@ -116,7 +116,7 @@ func (l *Lexer) skipWhitespace() {
 }
 
 // 文字が終わっていないかチェックした後、1文字読み込んでchに格納。
-// positionとreadPositionを進める。
+// positionとreadPositionを進める。//ASCⅡのみ対応
 func (l *Lexer) readChar() {
 	if l.readPosition >= len(l.input) {
 		l.ch = 0
