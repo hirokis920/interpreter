@@ -30,8 +30,9 @@ func Start(in io.Reader, out io.Writer) {
 			return
 		}
 		line := scanner.Text()
-		// レキサーのNew関数に文字を登録する
+		// ソースを渡してLexerを受け取る
 		l := lexer.New(line)
+		// Lexerを渡してParserを受け取る
 		p := parser.New(l)
 
 		program := p.ParseProgram()
