@@ -82,13 +82,3 @@ unquote()
 macro()
 マクロを定義する
 
-
-//GOPATHとenvとGOBINが何か書く
-
-//GOPATH
-
-//env
-
-//GOBIN
-
-//ToolChainについて書く
